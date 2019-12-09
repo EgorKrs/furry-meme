@@ -31,6 +31,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -46,6 +48,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -61,6 +65,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -76,6 +82,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -90,6 +98,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -105,6 +115,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
     public BigDecimal findFutureEquity(InitialData note) throws DAOException {
@@ -118,6 +130,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
     public BigDecimal findPreviousEquity(InitialData note) throws DAOException {
@@ -131,6 +145,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
     public BigDecimal findCreditInPeriod(int note) throws DAOException {
@@ -144,6 +160,8 @@ public class InitialDataRequest implements IDAO<InitialData,String, Map<Integer,
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 

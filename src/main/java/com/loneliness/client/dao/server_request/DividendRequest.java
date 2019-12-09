@@ -30,6 +30,9 @@ public class DividendRequest implements IDAO<Dividend,String, Map<Integer,Divide
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -45,6 +48,9 @@ public class DividendRequest implements IDAO<Dividend,String, Map<Integer,Divide
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -59,6 +65,8 @@ public class DividendRequest implements IDAO<Dividend,String, Map<Integer,Divide
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -74,6 +82,8 @@ public class DividendRequest implements IDAO<Dividend,String, Map<Integer,Divide
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -88,6 +98,8 @@ public class DividendRequest implements IDAO<Dividend,String, Map<Integer,Divide
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -103,6 +115,8 @@ public class DividendRequest implements IDAO<Dividend,String, Map<Integer,Divide
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 }

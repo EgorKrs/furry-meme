@@ -32,6 +32,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -46,6 +49,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -62,6 +68,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -76,6 +85,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -92,6 +104,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -107,6 +122,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
     public ROE findRoeByReportingPeriodId(int id) throws DAOException {
         transmission = new Transmission();
@@ -120,6 +138,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
     public Map<Quarter,ROE> findRoeByReportingPeriodYear(ReportingPeriod note) throws DAOException {
         transmission = new Transmission();
@@ -132,6 +153,9 @@ public class ROERequest implements IDAO<ROE,String, Map<Integer,ROE>> {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 

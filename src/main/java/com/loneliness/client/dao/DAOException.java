@@ -3,7 +3,7 @@ package com.loneliness.client.dao;
 public class DAOException extends Throwable{
     private String userMessage;
     public DAOException(String message,String userMessage) {
-        super(message);
+        super(userMessage);
         this.userMessage=userMessage;
     }
 

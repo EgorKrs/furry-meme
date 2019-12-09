@@ -31,6 +31,9 @@ public class CompanyRequest implements IDAO<Company,String, Map<Integer,Company>
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -45,6 +48,9 @@ public class CompanyRequest implements IDAO<Company,String, Map<Integer,Company>
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -62,6 +68,9 @@ public class CompanyRequest implements IDAO<Company,String, Map<Integer,Company>
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -77,6 +86,9 @@ public class CompanyRequest implements IDAO<Company,String, Map<Integer,Company>
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -90,6 +102,9 @@ public class CompanyRequest implements IDAO<Company,String, Map<Integer,Company>
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -105,6 +120,9 @@ public class CompanyRequest implements IDAO<Company,String, Map<Integer,Company>
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 }

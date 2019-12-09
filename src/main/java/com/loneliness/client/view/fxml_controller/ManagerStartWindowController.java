@@ -107,7 +107,7 @@ public class ManagerStartWindowController {
         @FXML
         void calculateSG() {
                 try {
-
+                        mainPane.getChildren().clear();
                         if (roe == null) {
                                 FilledAlert.getInstance().showAlert("Подсчёт данных",
                                         "Недостаточность данных", "сначала заполните ROE",
@@ -130,6 +130,7 @@ public class ManagerStartWindowController {
         @FXML
         private void calculateRoe() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
                                 getChangeRoe(), "Изменение данных");
                         ChangeRoe changeRoe = WorkWithFXMLLoader.getInstance().getLoader().getController();
@@ -162,6 +163,7 @@ public class ManagerStartWindowController {
         @FXML
         private void addReportingPeriod() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.
                                 getChangeReportingPeriod(), "Добавление данных");
 
@@ -179,6 +181,7 @@ public class ManagerStartWindowController {
         @FXML
         private void addROE() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeRoe(), "Добавление данных");
                         ChangeRoe changeRoe = loader.getLoader().getController();
                         changeRoe.setDialogStage(dialogStage, "CREATE", roe,company.getCompanyId());
@@ -194,6 +197,7 @@ public class ManagerStartWindowController {
         @FXML
         private void addSG() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeSg(), "Добавление данных");
                         ChangeSG changeSG = loader.getLoader().getController();
                         changeSG.setDialogStage(dialogStage, "CREATE", sg,company.getCompanyId());
@@ -209,6 +213,7 @@ public class ManagerStartWindowController {
         @FXML
         private void addDividend() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeDividend(), "Добавление данных");
                         ChangeDividend changeDividend = loader.getLoader().getController();
                         changeDividend.setDialogStage(dialogStage, "CREATE", dividend,company.getCompanyId());
@@ -224,6 +229,7 @@ public class ManagerStartWindowController {
         @FXML
         private void addInitialData() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeInitialData(), "Добавление данных");
                         ChangeInitialData controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "CREATE", initialData,company.getCompanyId());
@@ -239,6 +245,7 @@ public class ManagerStartWindowController {
         @FXML
         private void addCredit() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeCredit(), "Добавление данных");
                         ChangeCredit controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "CREATE", credit,company.getCompanyId());
@@ -254,6 +261,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveRoe() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeRoe(), "Сохранение данных");
                         ChangeRoe controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", roe,company.getCompanyId());
@@ -269,6 +277,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveSG() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeSg(), "Сохранение данных");
                         ChangeSG controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", sg,company.getCompanyId());
@@ -284,6 +293,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveReportingPeriod() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeReportingPeriod(), "Сохранение данных");
                         ChangeReportingPeriod controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", reportingPeriod,company.getCompanyId());
@@ -299,6 +309,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveROE() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeRoe(), "Сохранение данных");
                         ChangeRoe controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", roe,company.getCompanyId());
@@ -314,6 +325,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveDividend() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeDividend(), "Сохранение данных");
                         ChangeDividend controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", dividend,company.getCompanyId());
@@ -329,6 +341,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveInitialData() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeInitialData(), "Сохранение данных");
                         ChangeInitialData controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", initialData,company.getCompanyId());
@@ -344,6 +357,7 @@ public class ManagerStartWindowController {
         @FXML
         private void saveCredit() {
                 try {
+                        mainPane.getChildren().clear();
                         dialogStage = loader.createStage(pathManager.getChangeCredit(), "Сохранение данных");
                         ChangeCredit controller = loader.getLoader().getController();
                         controller.setDialogStage(dialogStage, "ADD", credit,company.getCompanyId());
@@ -362,6 +376,7 @@ public class ManagerStartWindowController {
 
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeCredit(), "Изменение данных");
                                 ChangeCredit controller = loader.getLoader().getController();
                                 credit.setCreditId(id);
@@ -383,6 +398,7 @@ public class ManagerStartWindowController {
 
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeInitialData(), "Изменение данных");
                                 ChangeInitialData controller = loader.getLoader().getController();
                                 initialData.setInitialDataId(id);
@@ -405,6 +421,7 @@ public class ManagerStartWindowController {
 
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeDividend(), "Изменение данных");
                                 ChangeDividend controller = loader.getLoader().getController();
                                 dividend.setDividendId(id);
@@ -426,6 +443,7 @@ public class ManagerStartWindowController {
 
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeRoe(), "Изменение данных");
                                 ChangeRoe controller = loader.getLoader().getController();
                                 roe.setROEId(id);
@@ -447,6 +465,7 @@ public class ManagerStartWindowController {
 
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeReportingPeriod(), "Изменение данных");
                                 ChangeReportingPeriod controller = loader.getLoader().getController();
                                 reportingPeriod.setReportingPeriodId(id);
@@ -468,6 +487,7 @@ public class ManagerStartWindowController {
 
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeSg(), "Изменение данных");
                                 ChangeSG controller = loader.getLoader().getController();
                                 sg.setSGId(id);
@@ -486,9 +506,9 @@ public class ManagerStartWindowController {
         @FXML
         private void loadRoe() {
                 try {
-
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = loader.createStage(pathManager.getChangeRoe(), "Изменение данных");
                                 ChangeRoe controller = loader.getLoader().getController();
                                 roe.setROEId(id);
@@ -526,6 +546,7 @@ public class ManagerStartWindowController {
                 try {
                         int id = getID();
                         if (id > 0) {
+                                mainPane.getChildren().clear();
                                 dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
                                         getWacc(), "Анализ данных");
                                 Wacc controller = WorkWithFXMLLoader.getInstance().getLoader().getController();
@@ -555,6 +576,7 @@ public class ManagerStartWindowController {
 
         private void analysis(String action) {
                 try {
+                        mainPane.getChildren().clear();
                         Stage dialogStage = loader.createStage(PathManager.getInstance().getFindWindow(), "Поиск данных");
                         FindWindow controller = loader.getLoader().getController();
                         switch (action) {

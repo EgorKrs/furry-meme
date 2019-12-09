@@ -31,6 +31,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -45,6 +48,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -61,6 +67,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -75,6 +84,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -91,6 +103,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
 
     @Override
@@ -106,6 +121,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
     }
     public BigDecimal findCreditInPeriod(Integer id) throws DAOException {
         transmission = new Transmission();
@@ -118,6 +136,9 @@ public class CreditRequest implements IDAO<Credit,String, Map<Integer,Credit>> {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 

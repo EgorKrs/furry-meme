@@ -31,9 +31,14 @@ public class CompanyRepresentativeRequest implements IDAO<CompanyRepresentatives
             return (String) Client.getInObject().readObject();
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
-        } catch (ClassNotFoundException | ClassCastException e) {
+        } catch (ClassNotFoundException  e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+
         }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
+        }
+
     }
 
     @Override
@@ -46,8 +51,10 @@ public class CompanyRepresentativeRequest implements IDAO<CompanyRepresentatives
             return (String) Client.getInObject().readObject();
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
-        } catch (ClassNotFoundException | ClassCastException e) {
+        } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -61,8 +68,11 @@ public class CompanyRepresentativeRequest implements IDAO<CompanyRepresentatives
             return (CompanyRepresentatives) Client.getInObject().readObject();
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
-        } catch (ClassNotFoundException | ClassCastException e) {
+        } catch (ClassNotFoundException  e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -76,8 +86,11 @@ public class CompanyRepresentativeRequest implements IDAO<CompanyRepresentatives
             return (String) Client.getInObject().readObject();
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
-        } catch (ClassNotFoundException | ClassCastException e) {
+        } catch (ClassNotFoundException  e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -91,8 +104,11 @@ public class CompanyRepresentativeRequest implements IDAO<CompanyRepresentatives
             return (Map<Integer, CompanyRepresentatives>) Client.getInObject().readObject();
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
-        } catch (ClassNotFoundException | ClassCastException e) {
+        } catch (ClassNotFoundException  e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+        catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 
@@ -106,8 +122,10 @@ public class CompanyRepresentativeRequest implements IDAO<CompanyRepresentatives
             return (Map<Integer, CompanyRepresentatives>) Client.getInObject().readObject();
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
-        } catch (ClassNotFoundException | ClassCastException e) {
+        } catch (ClassNotFoundException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        } catch (ClassCastException e){
+            throw new DAOException(e.getMessage(), e.getCause(), "Не валидные данные отправлены были");
         }
     }
 }

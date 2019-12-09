@@ -22,6 +22,7 @@ public class AddData {
     private static Credit[] credits;
     private static Dividend[] dividends;
     private static ROE[] roes;
+    private static UserData[] manager;
 
     @BeforeClass
     public static void setTestData() throws ControllerException {
@@ -31,7 +32,7 @@ public class AddData {
         credits=((Map<Integer,Credit>)commandProvider.getCommand(CommandName.RECEIVE_ALL_CREDIT).execute(new Transmission())).values().toArray(Credit[]::new);
         dividends=((Map<Integer,Dividend>)commandProvider.getCommand(CommandName.RECEIVE_ALL_DIVIDEND).execute(new Transmission())).values().toArray(Dividend[]::new);
         roes=((Map<Integer,ROE>)commandProvider.getCommand(CommandName.RECEIVE_ALL_ROE).execute(new Transmission())).values().toArray(ROE[]::new);
-
+        manager =((Map<Integer,UserData>)commandProvider.getCommand(CommandName.RECEIVE_ALL_MANAGER).execute(new Transmission())).values().toArray(UserData[]::new);
     }
 
     @Test
@@ -207,23 +208,38 @@ public class AddData {
     }
     @Test
     public void addSg() throws ControllerException {
-    int c=0;
-    SG sg;
-        for (int i=0;i<quantity;i++){
-        sg=new SG();
-        sg.setCompanyId(companies[faker.number().numberBetween(0,companies.length)].getCompanyId());
-        sg.setInitialDataId(initialDatas[faker.number().numberBetween(0,initialDatas.length)].getInitialDataId());
-        sg.setDividendID(dividends[faker.number().numberBetween(0,dividends.length)].getDividendId());
-        sg.setCreditId(credits[faker.number().numberBetween(0,credits.length)].getCreditId());
-        sg.setRoeId(roes[faker.number().numberBetween(0,roes.length)].getROEId());
-        sg.setReinvestmentProfit(new BigDecimal(faker.number().randomDouble(2,1,4000)));
-        sg.setReinvestmentRatio(new BigDecimal(faker.number().randomDouble(2,1,100)));
+        int c = 0;
+        SG sg;
+        for (int i = 0; i < quantity; i++) {
+            sg = new SG();
+            sg.setCompanyId(companies[faker.number().numberBetween(0, companies.length)].getCompanyId());
+            sg.setInitialDataId(initialDatas[faker.number().numberBetween(0, initialDatas.length)].getInitialDataId());
+            sg.setDividendID(dividends[faker.number().numberBetween(0, dividends.length)].getDividendId());
+            sg.setCreditId(credits[faker.number().numberBetween(0, credits.length)].getCreditId());
+            sg.setRoeId(roes[faker.number().numberBetween(0, roes.length)].getROEId());
+            sg.setReinvestmentProfit(new BigDecimal(faker.number().randomDouble(2, 1, 4000)));
+            sg.setReinvestmentRatio(new BigDecimal(faker.number().randomDouble(2, 1, 100)));
 
-        if((((String)commandProvider.getCommand(CommandName.CREATE_SG).execute(sg))).equals("Данные успешно добавлены")){
-            c++;
+            if ((((String) commandProvider.getCommand(CommandName.CREATE_SG).execute(sg))).equals("Данные успешно добавлены")) {
+                c++;
+            }
         }
+        Assert.assertEquals(quantity, c);
     }
-        Assert.assertEquals(quantity,c);
-}
+    @Test
+    public void addCompanyCompanyRepresentatives() throws ControllerException {
+        int c=0;
+        CompanyRepresentatives companyRepresentatives;
+        for (int i = 0; i< manager.length; i++){
+            companyRepresentatives=new CompanyRepresentatives();
+           companyRepresentatives.setCompanyId(companies[faker.number().numberBetween(0,manager.length)].getCompanyId());
+           companyRepresentatives.setManagerId(manager[faker.number().numberBetween(0,manager.length)].getId());
+            if ((((String) commandProvider.getCommand(CommandName.CREATE_COMPANY_REPRESENTATIVES).
+                    execute(companyRepresentatives))).equals("Данные успешно добавлены")) {
+                c++;
+            }
+        }
+        Assert.assertEquals(quantity, c);
+    }
 
 }
