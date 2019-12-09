@@ -60,10 +60,12 @@ public class ChangeRoe extends ChangeData{
     @FXML
     private Text FlField;
 
-    public void setDialogStage(Stage dialogStage, String action,ROE roe) {
+    public void setDialogStage(Stage dialogStage, String action,ROE roe,int id) {
         this.dialogStage = dialogStage;
         this.action = action;
         this.roe=roe;
+        companyIdField.setText(String.valueOf(id));
+        companyIdField.setEditable(false);
         Set<ConstraintViolation<Object>> errors = null;
         try {
             errors = (Set<ConstraintViolation<Object>>)commandProvider.

@@ -2,6 +2,7 @@ package com.loneliness.client.view.fxml_controller.chart;
 
 import com.loneliness.entity.Quarter;
 import com.loneliness.entity.ROE;
+import com.loneliness.entity.SG;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -25,7 +26,7 @@ public class ROEChart {
     private XYChart.Series<String, Number> dataSeries = new XYChart.Series<>();
 
 
-    public void setData(Map<Quarter, ROE> roeData, int year, String action) {
+    public void setROeData(Map<Quarter, ROE> roeData, int year, String action) {
         dataSeries.setName("Текущий отчётный период за год " + year);
         Iterator<Quarter> key = roeData.keySet().iterator();
         switch (action) {
@@ -54,4 +55,14 @@ public class ROEChart {
         barChart.setTitle(action);
 
     }
+    public void setSgData(Map<Quarter, SG> sgData, int year, String action) {
+        dataSeries.setName("Текущий отчётный период за год " + year);
+        Iterator<Quarter> key = sgData.keySet().iterator();
+                for (SG sg : sgData.values()) {
+                    dataSeries.getData().add(new XYChart.Data<>(key.next().toString(), sg.getSG()));
+                }
+        barChart.getData().add(dataSeries);
+        barChart.setTitle(action);
+    }
+
 }

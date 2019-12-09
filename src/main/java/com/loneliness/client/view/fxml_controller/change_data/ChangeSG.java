@@ -87,10 +87,12 @@ public class ChangeSG extends ChangeData{
         }
     }
 
-    public void setDialogStage(Stage dialogStage, String action, SG sg) {
+    public void setDialogStage(Stage dialogStage, String action, SG sg,int id) {
         this.dialogStage = dialogStage;
         this.action = action;
         this.sg = sg;
+        companyIdField.setText(String.valueOf(id));
+        companyIdField.setEditable(false);
         Set<ConstraintViolation<Object>> errors = null;
         try {
             errors = (Set<ConstraintViolation<Object>>)commandProvider.

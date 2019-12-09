@@ -35,10 +35,12 @@ public class ChangeCredit  extends ChangeData{
     @FXML
     private DatePicker payDate;
 
-    public void setDialogStage(Stage dialogStage, String action,  Credit credit) {
+    public void setDialogStage(Stage dialogStage, String action,  Credit credit,int id) {
         this.dialogStage = dialogStage;
         this.action = action;
         this.credit=credit;
+        companyIdField.setText(String.valueOf(id));
+        companyIdField.setEditable(false);
         Set<ConstraintViolation<Object>> errors = null;
         try {
             errors = (Set<ConstraintViolation<Object>>)commandProvider.
@@ -77,7 +79,7 @@ public class ChangeCredit  extends ChangeData{
                         answer = (String) commandProvider.getCommand(CommandName.UPDATE_CREDIT).execute(credit);
                         break;
                     case "ADD":
-                        answer = (String) commandProvider.getCommand(CommandName.CREATE_DIVIDEND).execute(credit);
+                        answer = (String) commandProvider.getCommand(CommandName.CREATE_CREDIT).execute(credit);
                         break;
                 }
 

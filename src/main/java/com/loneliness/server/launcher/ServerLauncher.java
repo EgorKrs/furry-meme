@@ -1,12 +1,12 @@
 package com.loneliness.server.launcher;
 
 
-
+//mvn exec:java -Dexec.mainClass="com.loneliness.server.launcher.ServerLauncher" -Dexec.args"8000"
 
 public class ServerLauncher {
     public static void main(String[] args)  {
         Server server;
-        if(args[0]!=null){
+        if(args.length!=0){
             try {
                 server = new Server(Integer.parseInt(args[0]));
             }

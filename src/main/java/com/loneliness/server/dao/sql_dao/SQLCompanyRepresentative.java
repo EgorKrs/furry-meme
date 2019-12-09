@@ -67,7 +67,11 @@ public class SQLCompanyRepresentative implements IDAO<CompanyRepresentatives,Str
 
     @Override
     public CompanyRepresentatives receive(CompanyRepresentatives note) {
+        if (note.getId()!=0)
         sql= "SELECT * FROM "+tableName+" WHERE id_представители_компаний = " + note.getId() + ";";
+        else {
+            sql= "SELECT * FROM "+tableName+" WHERE менеджер = " + note.getManagerId() + ";";
+        }
         try (Connection connection= DataBaseConnection.getInstance().getConnection()){
             ResultSet resultSet = connection.createStatement().executeQuery(sql);
             if( resultSet.next()){

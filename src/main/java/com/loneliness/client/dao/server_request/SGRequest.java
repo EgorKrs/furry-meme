@@ -3,6 +3,8 @@ package com.loneliness.client.dao.server_request;
 import com.loneliness.client.dao.DAOException;
 import com.loneliness.client.dao.IDAO;
 import com.loneliness.client.launcher.Client;
+import com.loneliness.entity.Quarter;
+import com.loneliness.entity.ReportingPeriod;
 import com.loneliness.entity.SG;
 import com.loneliness.entity.Transmission;
 
@@ -116,6 +118,19 @@ public class SGRequest implements IDAO<SG,String, Map<Integer,SG>> {
         } catch (IOException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
         } catch (ClassNotFoundException  |ClassCastException e) {
+            throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
+        }
+    }
+    public  Map<Quarter, SG> findSGByReportingPeriodYear(ReportingPeriod note)throws DAOException {
+        transmission = new Transmission();
+        transmission.setCommand("FIND_SG_BY_REPORTING_PERIOD_YEAR");
+        transmission.setReportingPeriod(note);
+        try {
+            Client.getOutObject().writeObject(transmission);
+            return (Map<Quarter, SG>) Client.getInObject().readObject();
+        } catch (IOException e) {
+            throw new DAOException(e.getMessage(), e.getCause(), "Ошибка соединения с сервером");
+        } catch (ClassNotFoundException | ClassCastException e) {
             throw new DAOException(e.getMessage(), e.getCause(), "Не верный ответ с сервера");
         }
     }

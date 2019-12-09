@@ -10,7 +10,7 @@ public class ServiceException extends Throwable{
     }
 
     public ServiceException(Throwable cause,String clientMessage) {
-        super(cause);
+        super(clientMessage,cause);
         this.clientMessage = clientMessage;
 
     }
@@ -21,7 +21,7 @@ public class ServiceException extends Throwable{
     }
 
     public ServiceException(String message, Throwable cause) {
-        super(cause);
+        super(message,cause);
         this.clientMessage = message;
     }
 

@@ -64,7 +64,7 @@ public class UserService implements CRUDService<UserData,String, Map<Integer,Use
             throw new ServiceException(e.getCause(),e.getMessage());
         }
     }
-    public UserData.Type authorise(UserData obj) throws ServiceException {
+    public UserData authorise(UserData obj) throws ServiceException {
         try {
             return request.authorise(obj);
         } catch (DAOException e) {

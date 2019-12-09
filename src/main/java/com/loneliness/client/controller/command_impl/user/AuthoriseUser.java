@@ -7,9 +7,9 @@ import com.loneliness.client.service.ServiceException;
 import com.loneliness.entity.UserData;
 
 
-public class AuthoriseUser implements Command<UserData,UserData.Type> {
+public class AuthoriseUser implements Command<UserData,UserData> {
     @Override
-    public UserData.Type execute(UserData request) throws ControllerException {
+    public UserData execute(UserData request) throws ControllerException {
         try {
             return FactoryService.getInstance().getUserService().authorise(request);
         } catch (ServiceException e) {

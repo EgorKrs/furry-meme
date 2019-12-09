@@ -117,13 +117,13 @@ public class UserRequest implements IDAO<UserData,String, Map<Integer,UserData>>
         }
     }
 
-    public UserData.Type authorise(UserData note) throws DAOException {
+    public UserData authorise(UserData note) throws DAOException {
         transmission = new Transmission();
         transmission.setCommand("AUTHORISE_USER");
         transmission.setUserData(note);
         try {
             Client.getOutObject().writeObject(transmission);
-            return (UserData.Type) Client.getInObject().readObject();
+            return (UserData) Client.getInObject().readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new DAOException("Ошибка получения данных", "ServerUserRequest " + e.getMessage());
         }

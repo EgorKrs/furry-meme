@@ -1,19 +1,15 @@
 package com.loneliness.client.service.service_impl;
 
-import com.loneliness.client.dao.DAOException;
 import com.loneliness.client.service.FactoryService;
 import com.loneliness.client.service.ServiceException;
-import com.loneliness.client.view.PathManager;
 import com.loneliness.entity.Report;
+import com.loneliness.entity.ReportingPeriod;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
-import java.beans.PropertyVetoException;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -33,10 +29,21 @@ public class ReportService {
     private String REPORT_pattern;
 
     public String create(Report report) throws  ServiceException {
+        JRBeanCollectionDataSource beanColDataSource=null;
         switch (report) {
             case ROE:
                 REPORT_pattern = "Report\\QuarterReport.jrxml";
-                REPORT_pdf = "Report\\ROEReport.pdf";
+                if(report.getCompanyId()==0) {
+                    REPORT_pdf = "Report\\ROEReport.pdf";
+                    beanColDataSource = new JRBeanCollectionDataSource(roeService.receiveAllElem().values());
+                }
+                else{
+                    REPORT_pdf="Report\\ROEYearReport.pdf";
+                    ReportingPeriod period=new ReportingPeriod();
+                    period.setYear(report.getYear());
+                    period.setCompanyId(report.getCompanyId());
+                    beanColDataSource = new JRBeanCollectionDataSource(roeService.findRoeByReportingPeriodYear(period).values());
+                }
                 break;
         }
         try {
@@ -46,7 +53,7 @@ public class ReportService {
         parameters.put("DATE", new Date());
         Locale.setDefault(new Locale("ru", "RU"));
         parameters.put(JRParameter.REPORT_LOCALE, new Locale("ru", "RU"));
-        JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(roeService.receiveAllElem().values());
+
         File reportPattern = new File( REPORT_pattern);
         JasperDesign jasperDesign = null;
 

@@ -51,10 +51,12 @@ public class ChangeReportingPeriod extends ChangeData{
         addButton.setVisible(false);
     }
 
-    public void setDialogStage(Stage dialogStage, String action, ReportingPeriod period)  {
+    public void setDialogStage(Stage dialogStage, String action, ReportingPeriod period,int id)  {
         this.dialogStage = dialogStage;
         this.action = action;
         this.period=period;
+        companyIdField.setText(String.valueOf(id));
+        companyIdField.setEditable(false);
         Set<ConstraintViolation<Object>> errors = null;
         try {
             errors = (Set<ConstraintViolation<Object>>)commandProvider.

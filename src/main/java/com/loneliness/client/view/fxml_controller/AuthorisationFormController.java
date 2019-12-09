@@ -8,13 +8,12 @@ import com.loneliness.client.launcher.Reconnect;
 import com.loneliness.client.view.FilledAlert;
 import com.loneliness.client.view.PathManager;
 import com.loneliness.client.view.PrimaryStage;
+import com.loneliness.entity.CompanyRepresentatives;
 import com.loneliness.entity.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,10 +34,10 @@ public class AuthorisationFormController {
                         UserData userData = new UserData();
                         getAllData(userData);
                         try {
-                                UserData.Type type = (UserData.Type) CommandProvider.getCommandProvider().getCommand(
+                                userData = (UserData) CommandProvider.getCommandProvider().getCommand(
                                         CommandName.AUTHORISE_USER).execute(userData);
 
-                                switch (type) {
+                                switch (userData.getType()) {
                                         case ADMIN:
                                                 PrimaryStage.getInstance().changeStage(FXMLLoader.load(getClass().getResource(PathManager.
                                                         getInstance().getAdminStartWindow())));
@@ -46,6 +45,12 @@ public class AuthorisationFormController {
                                         case MANAGER:
                                                 PrimaryStage.getInstance().changeStage(FXMLLoader.load(getClass().getResource(PathManager.
                                                         getInstance().getManagerStartWindow())));
+                                                CompanyRepresentatives companyRepresentatives=new CompanyRepresentatives();
+                                                companyRepresentatives.setManagerId(userData.getId());
+                                                companyRepresentatives=(CompanyRepresentatives)
+                                                        CommandProvider.getCommandProvider().getCommand(
+                                                        CommandName.RECEIVE_COMPANY_REPRESENTATIVES).execute(companyRepresentatives);
+                                                ManagerStartWindowController.getCompany().setCompanyId(companyRepresentatives.getCompanyId());
                                                 break;
                                         case NO_TYPE:
                                                 FilledAlert.getInstance().showAlert("Авторизация",

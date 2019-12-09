@@ -73,7 +73,7 @@ public class BusinessServiceImpl {
             InitialData initialData= SQLInitialDataDAO.getInstance().receive(data.getInitialDataId());
             return ((calculateRONA(roe).multiply(calculateFL(roe))).multiply(T).multiply(initialData.getPBIT().
                     divide(roe.getEBIT(),scale,roundingMode))).multiply(SQLReportingPeriodDAO.getInstance().findPreviousEquity(initialData).
-                    divide(SQLReportingPeriodDAO.getInstance().findFutureEquity(data.getInitialDataId()),scale,roundingMode));
+                    divide(SQLReportingPeriodDAO.getInstance().findFutureEquity(initialData),scale,roundingMode));
         } catch (ArithmeticException | NullPointerException|ServiceException e) {
             throw new ServiceException(e.getMessage(), e.getCause());
         }
@@ -99,7 +99,7 @@ public class BusinessServiceImpl {
         return note;
     }
 
-    public String state(ROE data){
+    public String state(ROE data) throws ServiceException {
         data= DAOFactory.getInstance().getRoeDAO().receive(data);
         InitialData initialData= SQLInitialDataDAO.getInstance().receive(data.getInitialDataId());
         try {
@@ -111,8 +111,10 @@ public class BusinessServiceImpl {
                 return "ПЛОХО";
             }
             else return "НОРМ";
-        } catch (ServiceException e) {
+        } catch (ServiceException|ArithmeticException e) {
             return "ПЛОХО";
+        } catch (NullPointerException e){
+            throw new ServiceException(e.getCause(),"не валидные данные");
         }
     }
 

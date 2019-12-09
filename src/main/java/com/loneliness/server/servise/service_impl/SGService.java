@@ -1,5 +1,7 @@
 package com.loneliness.server.servise.service_impl;
 
+import com.loneliness.entity.Quarter;
+import com.loneliness.entity.ReportingPeriod;
 import com.loneliness.entity.SG;
 import com.loneliness.server.dao.DAOFactory;
 import com.loneliness.server.dao.sql_dao.SQLSGDAO;
@@ -53,5 +55,8 @@ public class SGService implements DataService<SG,String, Map<Integer,SG>> {
 
     public SG findSGByReportingPeriodID(int id){
         return dao.findSGByReportingPeriodID(id);
+    }
+    public Map<Quarter, SG>  findSGByReportingPeriodYear(ReportingPeriod reportingPeriod){
+        return dao.findSGByReportingPeriodYear(reportingPeriod);
     }
 }

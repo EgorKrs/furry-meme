@@ -12,9 +12,9 @@ public class Window extends Application {
     public void start(Stage primaryStage) {
         try {
             Reconnect.getInstance().reconnect();
-            //Parent root = FXMLLoader.load(getClass().getResource(PathManager.getInstance().getAuthorisationForm()));
+            Parent root = FXMLLoader.load(getClass().getResource(PathManager.getInstance().getAuthorisationForm()));
             //Parent root = FXMLLoader.load(getClass().getResource(PathManager.getInstance().getManagerStartWindow()));
-            Parent root = FXMLLoader.load(getClass().getResource(PathManager.getInstance().getAdminStartWindow()));
+            //Parent root = FXMLLoader.load(getClass().getResource(PathManager.getInstance().getAdminStartWindow()));
             PrimaryStage.getInstance().changeStage(root);
         } catch (Exception e) {
             e.printStackTrace();

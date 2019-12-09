@@ -58,14 +58,17 @@ public class ChangeDividend extends ChangeData {
         }
     }
 
-    public void setDialogStage(Stage dialogStage, String action,  Dividend dividend) {
+    public void setDialogStage(Stage dialogStage, String action,  Dividend dividend,int id) {
         this.dialogStage = dialogStage;
         this.action = action;
         this.dividend=dividend;
+        companyIdField.setText(String.valueOf(id));
+        companyIdField.setEditable(false);
         Set<ConstraintViolation<Object>> errors = null;
         try {
             errors = (Set<ConstraintViolation<Object>>)commandProvider.
                     getCommand(CommandName.DIVIDEND_VALIDATION).execute(dividend);
+            setAllIds();
             if(errors.size() == 0){
                 setData(dividend);
                 setAllIds();

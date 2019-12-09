@@ -5,6 +5,8 @@ import com.loneliness.client.dao.FactoryDAO;
 import com.loneliness.client.dao.server_request.SGRequest;
 import com.loneliness.client.service.CRUDService;
 import com.loneliness.client.service.ServiceException;
+import com.loneliness.entity.Quarter;
+import com.loneliness.entity.ReportingPeriod;
 import com.loneliness.entity.SG;
 
 import java.util.Map;
@@ -78,6 +80,13 @@ public class SGService implements CRUDService<SG,String, Map<Integer,SG>> {
     public SG findSGByReportingPeriodID(int id) throws ServiceException {
         try {
             return dao.findSGByReportingPeriodID(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e.getCause(), e.getMessage());
+        }
+    }
+    public  Map<Quarter, SG> findSGByReportingPeriodYear(ReportingPeriod note) throws ServiceException {
+        try {
+            return dao.findSGByReportingPeriodYear(note);
         } catch (DAOException e) {
             throw new ServiceException(e.getCause(), e.getMessage());
         }

@@ -114,6 +114,7 @@ public class CommandProvider {
         repository.put(CommandName.UPDATE_SG,new UpdateSG());
         repository.put(CommandName.SG_VALIDATION,new SGValidation());
         repository.put(CommandName.FIND_SG_BY_REPORTING_PERIOD_ID,new FindSGByReportingPeriodID());
+        repository.put(CommandName.FIND_SG_BY_REPORTING_PERIOD_YEAR, new FindSGByReportingPeriodYear());
 
         repository.put(CommandName.INDEX_VALIDATION,new IndexValidation());
 

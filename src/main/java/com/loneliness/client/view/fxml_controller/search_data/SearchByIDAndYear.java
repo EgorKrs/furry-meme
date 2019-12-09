@@ -1,22 +1,12 @@
 package com.loneliness.client.view.fxml_controller.search_data;
 
-import com.loneliness.client.controller.CommandName;
-import com.loneliness.client.controller.CommandProvider;
-import com.loneliness.client.controller.ControllerException;
 import com.loneliness.client.view.FilledAlert;
-import com.loneliness.client.view.PathManager;
-import com.loneliness.client.view.ViewException;
-import com.loneliness.client.view.WorkWithFXMLLoader;
-import com.loneliness.client.view.fxml_controller.chart.ROEChart;
-import com.loneliness.entity.Quarter;
-import com.loneliness.entity.ROE;
+import com.loneliness.entity.Company;
 import com.loneliness.entity.ReportingPeriod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.Map;
 
 public class SearchByIDAndYear {
     @FXML
@@ -31,28 +21,26 @@ public class SearchByIDAndYear {
 
     private String title;
 
-    public void setData(String action,Stage dialogStage){
-        this.action=action;
+    private ReportingPeriod reportingPeriod=new ReportingPeriod();
+
+    public ReportingPeriod getReportingPeriod(){
+        return reportingPeriod;
+    }
+
+    public void setData(Stage dialogStage){
         this.dialogStage=dialogStage;
+    }
+    public void setData(Stage dialogStage, Company company){
+        this.dialogStage=dialogStage;
+        company_id.setText(String.valueOf(company.getCompanyId()));
+        company_id.setEditable(false);
     }
     @FXML
     void finishWork() {
         if(isValid()){
-            try {
-                Stage dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
-                        getROEChart(), "График экономических показателйе");
-                ROEChart chart=WorkWithFXMLLoader.getInstance().getLoader().getController();
-                ReportingPeriod reportingPeriod=new ReportingPeriod();
-                reportingPeriod.setYear(Integer.parseInt(year.getText()));
-                reportingPeriod.setCompanyId(Integer.parseInt(company_id.getText()));
-                chart.setData((Map< Quarter, ROE >)CommandProvider.getCommandProvider().
-                        getCommand(CommandName.FIND_ROE_BY_REPORTING_PERIOD_YEAR).execute(reportingPeriod),Integer.parseInt(year.getText()),action);
-                dialogStage.show();
-            } catch (ViewException | ControllerException e) {
-                FilledAlert.getInstance().showAlert("Поиск данных",
-                        "Поиск невозможен", e.getMessage(),
-                        this.dialogStage, "ERROR");
-            }
+            reportingPeriod.setCompanyId(Integer.parseInt(company_id.getText()));
+            reportingPeriod.setYear(Integer.parseInt(year.getText()));
+          dialogStage.close();
         }
 
     }

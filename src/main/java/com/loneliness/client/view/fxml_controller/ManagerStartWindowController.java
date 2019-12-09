@@ -9,6 +9,7 @@ import com.loneliness.client.view.ViewException;
 import com.loneliness.client.view.WorkWithFXMLLoader;
 import com.loneliness.client.view.fxml_controller.analysis.Wacc;
 import com.loneliness.client.view.fxml_controller.change_data.*;
+import com.loneliness.client.view.fxml_controller.chart.ROEChart;
 import com.loneliness.client.view.fxml_controller.search_data.FindWindow;
 import com.loneliness.client.view.fxml_controller.search_data.SearchByID;
 import com.loneliness.client.view.fxml_controller.search_data.SearchByIDAndYear;
@@ -18,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Map;
 
 public class ManagerStartWindowController {
         protected final Logger logger = LogManager.getLogger();
@@ -104,6 +107,7 @@ public class ManagerStartWindowController {
         @FXML
         void calculateSG() {
                 try {
+
                         if (roe == null) {
                                 FilledAlert.getInstance().showAlert("Подсчёт данных",
                                         "Недостаточность данных", "сначала заполните ROE",
@@ -113,7 +117,7 @@ public class ManagerStartWindowController {
                         dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
                                 getChangeSg(), "Изменение данных");
                         ChangeSG changeSg = WorkWithFXMLLoader.getInstance().getLoader().getController();
-                        changeSg.setDialogStage(dialogStage, "CREATE", sg);
+                        changeSg.setDialogStage(dialogStage, "CREATE", sg,company.getCompanyId());
                         mainPane.getChildren().add(WorkWithFXMLLoader.getInstance().getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Подсчёт данных",
@@ -129,7 +133,7 @@ public class ManagerStartWindowController {
                         dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
                                 getChangeRoe(), "Изменение данных");
                         ChangeRoe changeRoe = WorkWithFXMLLoader.getInstance().getLoader().getController();
-                        changeRoe.setDialogStage(dialogStage, "CREATE", roe);
+                        changeRoe.setDialogStage(dialogStage, "CREATE", roe,company.getCompanyId());
                         mainPane.getChildren().add(WorkWithFXMLLoader.getInstance().getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Подсчёт данных",
@@ -146,7 +150,7 @@ public class ManagerStartWindowController {
                 AnchorPane.setRightAnchor(mainPane, 5.0);
                 AnchorPane.setBottomAnchor(mainPane, 5.0);
                 company = new Company();
-                company.setCompanyId(1);
+                company.setCompanyId(5);
                 credit = new Credit();
                 dividend = new Dividend();
                 initialData = new InitialData();
@@ -162,7 +166,7 @@ public class ManagerStartWindowController {
                                 getChangeReportingPeriod(), "Добавление данных");
 
                         ChangeReportingPeriod changeReportingPeriod = loader.getLoader().getController();
-                        changeReportingPeriod.setDialogStage(dialogStage, "CREATE", reportingPeriod);
+                        changeReportingPeriod.setDialogStage(dialogStage, "CREATE", reportingPeriod,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -177,7 +181,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeRoe(), "Добавление данных");
                         ChangeRoe changeRoe = loader.getLoader().getController();
-                        changeRoe.setDialogStage(dialogStage, "CREATE", roe);
+                        changeRoe.setDialogStage(dialogStage, "CREATE", roe,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -192,7 +196,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeSg(), "Добавление данных");
                         ChangeSG changeSG = loader.getLoader().getController();
-                        changeSG.setDialogStage(dialogStage, "CREATE", sg);
+                        changeSG.setDialogStage(dialogStage, "CREATE", sg,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -207,7 +211,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeDividend(), "Добавление данных");
                         ChangeDividend changeDividend = loader.getLoader().getController();
-                        changeDividend.setDialogStage(dialogStage, "CREATE", dividend);
+                        changeDividend.setDialogStage(dialogStage, "CREATE", dividend,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -222,7 +226,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeInitialData(), "Добавление данных");
                         ChangeInitialData controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "CREATE", initialData);
+                        controller.setDialogStage(dialogStage, "CREATE", initialData,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -237,7 +241,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeCredit(), "Добавление данных");
                         ChangeCredit controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "CREATE", credit);
+                        controller.setDialogStage(dialogStage, "CREATE", credit,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -252,7 +256,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeRoe(), "Сохранение данных");
                         ChangeRoe controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", roe);
+                        controller.setDialogStage(dialogStage, "ADD", roe,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -267,7 +271,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeSg(), "Сохранение данных");
                         ChangeSG controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", sg);
+                        controller.setDialogStage(dialogStage, "ADD", sg,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -282,7 +286,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeReportingPeriod(), "Сохранение данных");
                         ChangeReportingPeriod controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", reportingPeriod);
+                        controller.setDialogStage(dialogStage, "ADD", reportingPeriod,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -297,7 +301,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeRoe(), "Сохранение данных");
                         ChangeRoe controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", roe);
+                        controller.setDialogStage(dialogStage, "ADD", roe,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -312,7 +316,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeDividend(), "Сохранение данных");
                         ChangeDividend controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", dividend);
+                        controller.setDialogStage(dialogStage, "ADD", dividend,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -327,7 +331,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeInitialData(), "Сохранение данных");
                         ChangeInitialData controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", initialData);
+                        controller.setDialogStage(dialogStage, "ADD", initialData,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -342,7 +346,7 @@ public class ManagerStartWindowController {
                 try {
                         dialogStage = loader.createStage(pathManager.getChangeCredit(), "Сохранение данных");
                         ChangeCredit controller = loader.getLoader().getController();
-                        controller.setDialogStage(dialogStage, "ADD", credit);
+                        controller.setDialogStage(dialogStage, "ADD", credit,company.getCompanyId());
                         mainPane.getChildren().add(loader.getPane());
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Добавление данных",
@@ -355,13 +359,14 @@ public class ManagerStartWindowController {
         @FXML
         private void loadCredit() {
                 try {
-                        dialogStage = loader.createStage(pathManager.getChangeCredit(), "Изменение данных");
-                        ChangeCredit controller = loader.getLoader().getController();
+
                         int id = getID();
                         if (id > 0) {
+                                dialogStage = loader.createStage(pathManager.getChangeCredit(), "Изменение данных");
+                                ChangeCredit controller = loader.getLoader().getController();
                                 credit.setCreditId(id);
                                 credit = (Credit) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_CREDIT).execute(credit);
-                                controller.setDialogStage(dialogStage, "UPDATE", credit);
+                                controller.setDialogStage(dialogStage, "UPDATE", credit,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
                         }
                 } catch (ViewException | ControllerException e) {
@@ -382,7 +387,7 @@ public class ManagerStartWindowController {
                                 ChangeInitialData controller = loader.getLoader().getController();
                                 initialData.setInitialDataId(id);
                                 initialData = (InitialData) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_INITIAL_DATA).execute(initialData);
-                                controller.setDialogStage(dialogStage, "UPDATE", initialData);
+                                controller.setDialogStage(dialogStage, "UPDATE", initialData,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
 
                         }
@@ -404,7 +409,7 @@ public class ManagerStartWindowController {
                                 ChangeDividend controller = loader.getLoader().getController();
                                 dividend.setDividendId(id);
                                 dividend = (Dividend) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_DIVIDEND).execute(dividend);
-                                controller.setDialogStage(dialogStage, "UPDATE", dividend);
+                                controller.setDialogStage(dialogStage, "UPDATE", dividend,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
                         }
                 } catch (ViewException | ControllerException e) {
@@ -425,7 +430,7 @@ public class ManagerStartWindowController {
                                 ChangeRoe controller = loader.getLoader().getController();
                                 roe.setROEId(id);
                                 roe = (ROE) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_ROE).execute(roe);
-                                controller.setDialogStage(dialogStage, "UPDATE", roe);
+                                controller.setDialogStage(dialogStage, "UPDATE", roe,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
                         }
                 } catch (ViewException | ControllerException e) {
@@ -446,7 +451,7 @@ public class ManagerStartWindowController {
                                 ChangeReportingPeriod controller = loader.getLoader().getController();
                                 reportingPeriod.setReportingPeriodId(id);
                                 reportingPeriod = (ReportingPeriod) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_REPORTING_PERIOD).execute(reportingPeriod);
-                                controller.setDialogStage(dialogStage, "UPDATE", reportingPeriod);
+                                controller.setDialogStage(dialogStage, "UPDATE", reportingPeriod,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
                         }
                 } catch (ViewException | ControllerException e) {
@@ -467,7 +472,7 @@ public class ManagerStartWindowController {
                                 ChangeSG controller = loader.getLoader().getController();
                                 sg.setSGId(id);
                                 sg = (SG) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_SG).execute(sg);
-                                controller.setDialogStage(dialogStage, "UPDATE", sg);
+                                controller.setDialogStage(dialogStage, "UPDATE", sg,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
                         }
                 } catch (ViewException | ControllerException e) {
@@ -488,7 +493,7 @@ public class ManagerStartWindowController {
                                 ChangeRoe controller = loader.getLoader().getController();
                                 roe.setROEId(id);
                                 roe = (ROE) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_ROE).execute(roe);
-                                controller.setDialogStage(dialogStage, "UPDATE", roe);
+                                controller.setDialogStage(dialogStage, "UPDATE", roe,company.getCompanyId());
                                 mainPane.getChildren().add(loader.getPane());
                         }
                 } catch (ViewException | ControllerException e) {
@@ -593,17 +598,39 @@ public class ManagerStartWindowController {
                 String chart = "PROFITABILITY";
                 createChart(chart);
         }
+        @FXML
+        private void SGChart() {
+                String chart = "SG";
+                createChart(chart);
+        }
+
 
 
         private void createChart(String chart) {
                 Stage dialogStage = null;
                 try {
                         dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
-                                getSearchByIDAndYear(), "График данных");
+                                getSearchByIDAndYear(), "Поиск данных");
                         SearchByIDAndYear controller = WorkWithFXMLLoader.getInstance().getLoader().getController();
-                        controller.setData(chart, dialogStage);
+                        controller.setData(dialogStage,company);
+                        dialogStage.showAndWait();
+                        ReportingPeriod reportingPeriod=controller.getReportingPeriod();
+
+                        dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
+                                getROEChart(), "График экономических показателйе");
+                        ROEChart roeChart=WorkWithFXMLLoader.getInstance().getLoader().getController();
+                        if(chart.equals("SG")){
+                                roeChart.setSgData((Map< Quarter, SG >)CommandProvider.getCommandProvider().
+                                        getCommand(CommandName.FIND_SG_BY_REPORTING_PERIOD_YEAR).execute(reportingPeriod),reportingPeriod.getYear(),chart);
+
+                        }
+                        else
+                        roeChart.setROeData((Map< Quarter, ROE >)CommandProvider.getCommandProvider().
+                                getCommand(CommandName.FIND_ROE_BY_REPORTING_PERIOD_YEAR).execute(reportingPeriod),reportingPeriod.getYear(),chart);
                         dialogStage.show();
-                } catch (ViewException e) {
+
+
+                } catch (ViewException | ControllerException e) {
                         FilledAlert.getInstance().showAlert("Поиск данных",
                                 "Поиск невозможен", e.getMessage(),
                                 this.dialogStage, "ERROR");
@@ -624,5 +651,26 @@ public class ManagerStartWindowController {
                                 this.dialogStage, "ERROR");
                         logger.catching(e);
                 }
+        }
+        @FXML
+        private void createRoeYearReport(){
+                try {
+                        dialogStage = WorkWithFXMLLoader.getInstance().createStage(PathManager.getInstance().
+                                getSearchByIDAndYear(), "Поиск данных");
+                        SearchByIDAndYear controller = WorkWithFXMLLoader.getInstance().getLoader().getController();
+                        controller.setData(dialogStage,company);
+                        dialogStage.showAndWait();
+                        ReportingPeriod reportingPeriod=controller.getReportingPeriod();
+                        Report report=Report.ROE;
+                        report.setCompanyId(reportingPeriod.getCompanyId());
+                        report.setYear(reportingPeriod.getYear());
+                        String answer=(String)CommandProvider.getCommandProvider().getCommand(CommandName.CREATE_REPORT).execute(report);
+                        FilledAlert.getInstance().showAlert("Создание отчёта",
+                                "Успех ", answer,
+                                this.dialogStage, "INFORMATION");
+                } catch (ViewException | ControllerException e) {
+                        logger.catching(e);
+                }
+
         }
 }

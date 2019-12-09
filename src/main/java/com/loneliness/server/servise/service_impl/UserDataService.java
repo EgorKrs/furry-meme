@@ -38,10 +38,13 @@ public class UserDataService implements DataService<UserData,String, Map<Integer
     public Map<Integer, UserData> receiveAllInLimit(int left, int right) {
         return userDAO.receiveAllInLimit(left,right);
     }
-    public UserData.Type authorise(UserData data){
+    public UserData authorise(UserData data){
         if(data.getPassword().equals(receive(data).getPassword()))
-        return receive(data).getType();
-        else return UserData.Type.NO_TYPE;
+        return receive(data);
+        else {
+            data.setType(UserData.Type.NO_TYPE);
+            return data;
+        }
     }
     public Map<Integer, UserData> receiveAllManager(){
         return userDAO.receiveAllManager();

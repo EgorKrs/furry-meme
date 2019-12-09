@@ -7,6 +7,7 @@ import com.loneliness.client.view.FilledAlert;
 import com.loneliness.client.view.PathManager;
 import com.loneliness.client.view.ViewException;
 import com.loneliness.client.view.WorkWithFXMLLoader;
+import com.loneliness.client.view.fxml_controller.ManagerStartWindowController;
 import com.loneliness.client.view.fxml_controller.analysis.AnalysisROE;
 import com.loneliness.client.view.fxml_controller.analysis.AnalysisSG;
 import com.loneliness.entity.ROE;
@@ -40,6 +41,8 @@ public class FindWindow {
     public void setDialogStage(Stage dialogStage,String action) {
         this.dialogStage = dialogStage;
         this.action=action;
+        companyIdField.setText(String.valueOf(ManagerStartWindowController.getCompany().getCompanyId()));
+        companyIdField.setEditable(false);
     }
 
     @FXML

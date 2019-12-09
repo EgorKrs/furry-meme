@@ -1,5 +1,7 @@
 package com.loneliness.server.dao.sql_dao;
 
+import com.loneliness.entity.Quarter;
+import com.loneliness.entity.ReportingPeriod;
 import com.loneliness.entity.SG;
 import com.loneliness.server.dao.DataBaseConnection;
 import com.loneliness.server.dao.IDAO;
@@ -130,6 +132,29 @@ public class SQLSGDAO implements IDAO<SG,String, Map<Integer,SG>> {
         if(data.values().iterator().hasNext())
             return receiveData(sql).values().iterator().next();
         else return new SG();
+    }
+    public Map<Quarter, SG> findSGByReportingPeriodYear(ReportingPeriod reportingPeriod){
+        sql = "SELECT * FROM `furry-meme`.sg\n" +
+                "inner join `furry-meme`.исходные_данные\n" +
+                "on `furry-meme`.исходные_данные.id_исходные_данные=`furry-meme`.sg.id_исходных_данных\n" +
+                "inner join `furry-meme`.отчётные_периоды\n" +
+                "on `furry-meme`.отчётные_периоды.id_отчетного_периода=`furry-meme`.исходные_данные.id_отчетного_периода\n" +
+                "where company_id="+reportingPeriod.getCompanyId()+" and год="+reportingPeriod.getYear()+";";
+        ResultSet resultSet;
+        ConcurrentHashMap<Quarter, SG> data=new ConcurrentHashMap<>();
+        SG sg;
+        try (Connection connection= DataBaseConnection.getInstance().getConnection()){
+
+            resultSet=connection.createStatement().executeQuery(sql);
+            while (resultSet.next()){
+                sg=getDataFromResultSet(resultSet);
+                data.put(Quarter.valueOf(resultSet.getString("квартал")),sg);
+            }
+        } catch (SQLException | PropertyVetoException e) {
+            logger.catching(e);
+        }
+        return data;
+
     }
 
     private SG getDataFromResultSet(ResultSet resultSet) throws SQLException {

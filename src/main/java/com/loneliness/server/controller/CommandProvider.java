@@ -117,6 +117,7 @@ public class CommandProvider {
         repository.put(CommandName.RECEIVE_SG,new ReceiveSG());
         repository.put(CommandName.UPDATE_SG,new UpdateSG());
         repository.put(CommandName.FIND_SG_BY_REPORTING_PERIOD_ID,new FindSGByReportingPeriodID());
+        repository.put(CommandName.FIND_SG_BY_REPORTING_PERIOD_YEAR,new FindSGByReportingPeriodYear());
 
         repository.put(CommandName.UPDATE_COMPANY_REPRESENTATIVES,new UpdateCompanyRepresentatives());
         repository.put(CommandName.CREATE_COMPANY_REPRESENTATIVES,new CreateCompanyRepresentatives());

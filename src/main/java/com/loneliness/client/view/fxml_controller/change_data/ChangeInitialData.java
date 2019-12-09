@@ -40,17 +40,20 @@ public class ChangeInitialData extends ChangeData{
     @FXML
     private TextField creditField;
 
-    public void setDialogStage(Stage dialogStage, String action,  InitialData initialData) {
+    public void setDialogStage(Stage dialogStage, String action,  InitialData initialData,int id) {
         this.dialogStage = dialogStage;
         this.action = action;
         this.initialData=initialData;
+        companyIdField.setText(String.valueOf(id));
+        companyIdField.setEditable(false);
         Set<ConstraintViolation<Object>> errors = null;
         try {
             errors = (Set<ConstraintViolation<Object>>)commandProvider.
                     getCommand(CommandName.INITIAL_DATA_VALIDATION).execute(initialData);
+            setAllIds();
             if(errors.size() == 0){
                 setData(initialData);
-                setAllIds();
+
             }
         } catch (ControllerException e) {
             logger.catching(e);
