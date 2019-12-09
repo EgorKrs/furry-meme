@@ -33,6 +33,20 @@ public class ROE implements Serializable,Entity {
     private BigDecimal FL;
 
     @Override
+    public String beautyToString() {
+        return
+                "Id компании=" + companyId +
+                ", Id исходных данных= " + initialDataId +
+                ", Id кредита= " + creditId +
+                ", Id дивиданда= " + dividendID +
+                ", рентабельность собственного капитала = " + ROE +
+                ", Оперативная прибыль= " + EBIT +
+                ", рентабельность продаж= " + profR +
+                ", рентабельность чистых активов = " + RONA +
+                ", Финансовый рычаг = " + FL ;
+    }
+
+    @Override
     public String getPrimaryStringId() {
         return String.valueOf(ROEId);
     }

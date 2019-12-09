@@ -41,7 +41,9 @@ public class BusinessServiceImpl {
     public BigDecimal calculateRONA(ROE data) throws ServiceException {
         try {
             InitialData initialData= SQLInitialDataDAO.getInstance().receive(data.getInitialDataId());
-            return calculateProfitability(initialData).multiply(calculateNetAssetTurnover(initialData)).setScale(scale, roundingMode);
+            BigDecimal rona= calculateProfitability(initialData).multiply(calculateNetAssetTurnover(initialData)).setScale(scale, roundingMode);
+            System.out.println("rona"+rona.toString());
+            return rona;
         }
         catch (NullPointerException | ServiceException e){
             throw new ServiceException(e.getMessage(),e.getCause());
@@ -82,9 +84,22 @@ public class BusinessServiceImpl {
 
     public BigDecimal calculateWACC(InitialData initialData) throws ServiceException {
         try {
-            return SQLReportingPeriodDAO.getInstance().findCreditInPeriod(initialData.getReportingDateId()).multiply(new BigDecimal(1).min(T)).multiply( initialData.getCredit().divide( initialData.getCredit(),
-                    scale,roundingMode).add(initialData.getEquity())).add( initialData.getCredit().divide(( initialData.getCredit().add(initialData.getEquity())),
-                    scale,roundingMode)).add((new BigDecimal(0.07).multiply(initialData.getPBIT())).multiply(initialData.getEquity().divide((initialData.getCredit().add(initialData.getEquity())),scale,roundingMode)));
+            System.out.println("initialData "+initialData.toString());
+            System.out.println("creditInPeriod "+SQLReportingPeriodDAO.getInstance().findCreditInPeriod(initialData.getReportingDateId()));
+            BigDecimal f=SQLReportingPeriodDAO.getInstance().findCreditInPeriod(initialData.getReportingDateId()).multiply(new BigDecimal(1).min(T));
+            System.out.println("first"+ f.toString());
+            BigDecimal s=initialData.getCredit().divide( initialData.getCredit().add(initialData.getEquity()), scale,roundingMode);
+            System.out.println("s"+s.toString());
+            BigDecimal fi=initialData.getEquity().divide((initialData.getCredit().add(initialData.getEquity())),scale,roundingMode);
+            System.out.println("fi"+fi.toString());
+            BigDecimal fi1=new BigDecimal(0.07).multiply(fi);
+            BigDecimal wacc=f.add(s).add(fi1);
+//            BigDecimal wacc=SQLReportingPeriodDAO.getInstance().findCreditInPeriod(initialData.getReportingDateId()).multiply(new BigDecimal(1).min(T)).multiply( initialData.getCredit().divide( initialData.getCredit(),
+//                    scale,roundingMode).add(initialData.getEquity())).add( initialData.getCredit().divide(( initialData.getCredit().add(initialData.getEquity())),
+//                    scale,roundingMode)).add((new BigDecimal(0.07).multiply(initialData.getPBIT())).multiply(initialData.getEquity().divide((initialData.getCredit().add(initialData.getEquity())),scale,roundingMode)));
+
+            System.out.println("wacc"+wacc.toString());
+            return wacc;
         }catch (ArithmeticException e){
             throw new ServiceException(e.getMessage(), e.getCause());
         }
@@ -105,14 +120,14 @@ public class BusinessServiceImpl {
         try {
             int res=calculateWACC(initialData).multiply(new BigDecimal("1").min(T)).compareTo(calculateRONA(data));
             if(res<0){
-                return "ХОРОШО";
+                return "МИЛОРД, КОМПАНИЯ ПРОЦВЕТАЕТ";
             }
             else if(res>0){
-                return "ПЛОХО";
+                return "ЗАКРЫВАЙ ЛАВОЧКУ";
             }
-            else return "НОРМ";
+            else return "ЗЯМЛЯ ВОЛЬФРАМОМ, КОНЕЧНО";
         } catch (ServiceException|ArithmeticException e) {
-            return "ПЛОХО";
+            return "ЗАКРЫВАЙ ЛАВОЧКУ";
         } catch (NullPointerException e){
             throw new ServiceException(e.getCause(),"не валидные данные");
         }

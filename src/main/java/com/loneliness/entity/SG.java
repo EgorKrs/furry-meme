@@ -31,6 +31,20 @@ public class SG implements Serializable ,Entity{
     private BigDecimal SG;
 
     @Override
+    public String beautyToString() {
+        return
+                "Id исходных= " + initialDataId +
+                ", Id рентабельность собственного капитала = " + roeId +
+                ", Id компании= " + companyId +
+                ", Id кредита= " + creditId +
+                ", Id дивиданда= " + dividendID +
+                ", реинвестиционная прибыль= " + reinvestmentProfit +
+                ", коэффициент реинвестирования= " + reinvestmentRatio +
+                ", показатели экономического роста = " + SG +
+                '}';
+    }
+
+    @Override
     public IntegerProperty getIntegerId() {
         return new SimpleIntegerProperty(companyId);
     }

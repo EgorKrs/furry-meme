@@ -20,6 +20,13 @@ public class ReportingPeriod implements Serializable,Entity {
     private int companyId;
 
     @Override
+    public String beautyToString() {
+
+        return "год= " + year +
+                ", квартал= " + quarter ;
+    }
+
+    @Override
     public String getPrimaryStringId() {
         return String.valueOf(reportingPeriodId);
     }
@@ -64,5 +71,15 @@ public class ReportingPeriod implements Serializable,Entity {
 
     public void setQuarter(Quarter quarter) {
         this.quarter = quarter;
+    }
+
+    @Override
+    public String toString() {
+        return "ReportingPeriod{" +
+                "reportingPeriodId=" + reportingPeriodId +
+                ", year=" + year +
+                ", quarter=" + quarter +
+                ", companyId=" + companyId +
+                '}';
     }
 }

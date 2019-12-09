@@ -1,5 +1,8 @@
 package com.loneliness.entity;
 
+import com.loneliness.client.controller.CommandName;
+import com.loneliness.client.controller.CommandProvider;
+import com.loneliness.client.controller.ControllerException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,6 +24,18 @@ public class ContactDetail implements Serializable,Entity {
     private String info;
     @Positive(message = "Задайте положительный id компании ")
     private int companyId;
+
+
+    @Override
+    public String beautyToString() throws ControllerException {
+        Company company=new Company();
+        company.setCompanyId(companyId);
+        company=(Company)CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_COMPANY).execute(company);
+        return  "email='" + email + "'" +
+                ", номер телефона= '" + phoneNumber + "'" +
+                ", дополнительная информация= '" + info + '\'' +
+                ", id компании= " + company.beautyToString() ;
+    }
 
     @Override
     public String getPrimaryStringId() {

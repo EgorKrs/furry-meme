@@ -579,6 +579,7 @@ public class ManagerStartWindowController {
                         mainPane.getChildren().clear();
                         Stage dialogStage = loader.createStage(PathManager.getInstance().getFindWindow(), "Поиск данных");
                         FindWindow controller = loader.getLoader().getController();
+                        mainPane.getChildren().add(WorkWithFXMLLoader.getInstance().getPane());
                         switch (action) {
                                 case "ANALYSIS_ROE":
                                         controller.setDialogStage(dialogStage, "ANALYSIS_ROE");
@@ -587,7 +588,7 @@ public class ManagerStartWindowController {
                                         controller.setDialogStage(dialogStage, "ANALYSIS_SG");
                                         break;
                         }
-                        dialogStage.showAndWait();
+
                 } catch (ViewException e) {
                         FilledAlert.getInstance().showAlert("Поиск данных",
                                 "Поиск невозможен", e.getMessage(),
@@ -649,7 +650,7 @@ public class ManagerStartWindowController {
                         else
                         roeChart.setROeData((Map< Quarter, ROE >)CommandProvider.getCommandProvider().
                                 getCommand(CommandName.FIND_ROE_BY_REPORTING_PERIOD_YEAR).execute(reportingPeriod),reportingPeriod.getYear(),chart);
-                        dialogStage.show();
+                        mainPane.getChildren().add(WorkWithFXMLLoader.getInstance().getPane());
 
 
                 } catch (ViewException | ControllerException e) {

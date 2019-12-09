@@ -17,6 +17,8 @@ public class ChangeCompany extends ChangeData {
 
     private Company company;
 
+
+
     @FXML
     private TextField companyNameField;
 

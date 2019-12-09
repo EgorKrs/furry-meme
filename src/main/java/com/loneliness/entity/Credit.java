@@ -1,5 +1,8 @@
 package com.loneliness.entity;
 
+import com.loneliness.client.controller.CommandName;
+import com.loneliness.client.controller.CommandProvider;
+import com.loneliness.client.controller.ControllerException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,6 +35,18 @@ public class Credit implements Serializable ,Entity{
     @Override
     public String getPrimaryStringId() {
         return String.valueOf(creditId);
+    }
+
+    @Override
+    public String beautyToString() throws ControllerException {
+        Company company=new Company();
+        company.setCompanyId(companyId);
+        company=(Company) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_COMPANY).execute(company);
+        return  ""+company.beautyToString() +
+                ", процент кредита= " + loanPercentage +
+                ", сумма по кредиту= " + loanTotal +
+                ", дата взятия кредита= " + dateOfCollection +
+                ", кредитную ставка банка =" + payDate ;
     }
 
     @Override

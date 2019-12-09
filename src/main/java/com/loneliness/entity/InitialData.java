@@ -1,5 +1,8 @@
 package com.loneliness.entity;
 
+import com.loneliness.client.controller.CommandName;
+import com.loneliness.client.controller.CommandProvider;
+import com.loneliness.client.controller.ControllerException;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,6 +30,24 @@ public class InitialData implements Serializable ,Entity{
     private BigDecimal credit;
     @Positive(message = "ID отчетного периода должен быть положительным")
     private int reportingDateId;
+
+    @Override
+    public String beautyToString() throws ControllerException {
+        Company company=new Company();
+        company.setCompanyId(companyId);
+        company=(Company) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_COMPANY).execute(company);
+        ReportingPeriod reportingPeriod=new ReportingPeriod();
+        reportingPeriod.setReportingPeriodId(reportingDateId);
+        reportingPeriod=(ReportingPeriod) CommandProvider.getCommandProvider().getCommand(CommandName.RECEIVE_REPORTING_PERIOD).execute(reportingPeriod);
+        return
+                company.beautyToString()+
+                ", выручка от реализации= " + sales +
+                ", активы= " + assets +
+                ", собственный капитал= " + equity +
+                ", чистую прибыль= " + PBIT +
+                ", привлеченный капитал= " + credit +
+                ", "+reportingPeriod.beautyToString();
+    }
 
     @Override
     public String getPrimaryStringId() {

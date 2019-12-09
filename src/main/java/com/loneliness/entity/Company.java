@@ -31,6 +31,11 @@ public class Company implements Serializable ,Entity{
         return new SimpleStringProperty(companyName);
     }
 
+    @Override
+    public String beautyToString() {
+        return "Имя компании= '" + companyName + "'";
+    }
+
     public int getCompanyId() {
         return companyId;
     }

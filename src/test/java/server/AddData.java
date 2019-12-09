@@ -15,7 +15,7 @@ import java.util.*;
 public class AddData {
     private static CommandProvider commandProvider=CommandProvider.getCommandProvider();
     private Faker faker=new Faker(new Locale("ru"));
-    private int quantity=300;
+    private int quantity=20;
     private static Company[] companies;
     private static ReportingPeriod[] reportingPeriods;
     private static InitialData[] initialDatas ;

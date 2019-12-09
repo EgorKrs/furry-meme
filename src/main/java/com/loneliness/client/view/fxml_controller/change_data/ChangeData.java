@@ -15,12 +15,16 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public abstract class ChangeData implements SetData {
     protected CommandProvider commandProvider=CommandProvider.getCommandProvider();
     protected final Logger logger = LogManager.getLogger();
+    @FXML
+    protected TextField companyName;
     protected String action;
     @FXML
     protected Stage dialogStage;
@@ -119,12 +123,35 @@ public abstract class ChangeData implements SetData {
             setId(data,reportingPeriodIDs,reportingPeriodIdField);
         }
     }
+    static final List<Entity> list=new ArrayList<>(1000);
 
     protected void setId(Entity value,MenuButton menuButton,TextField field){
-        MenuItem item;
-        EventHandler<ActionEvent> fillIDField = e -> field.setText(((MenuItem)e.getSource()).getText());
-        item=new MenuItem(String.valueOf(value.getPrimaryStringId()));
+
+        MenuItem item = new MenuItem();
+        EventHandler<ActionEvent> fillIDField = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                for (Entity en :
+                        list) {
+                    try {
+                        if(en.beautyToString().equals(((MenuItem) e.getSource()).getText())){
+                            field.setText(String.valueOf(en.getPrimaryStringId()));
+                        }
+                    } catch (ControllerException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                menuButton.setText(((MenuItem) e.getSource()).getText().toString());
+            }
+        };
+        try {
+            item=new MenuItem(String.valueOf(value.beautyToString()));
+        } catch (ControllerException e) {
+            e.printStackTrace();
+        }
         item.setOnAction(fillIDField);
         menuButton.getItems().add(item);
+        list.add(value);
     }
 }

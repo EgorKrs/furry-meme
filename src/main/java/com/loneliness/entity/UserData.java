@@ -28,6 +28,13 @@ public class UserData implements Serializable ,Entity{
     private String email;
 
     @Override
+    public String beautyToString() {
+        return
+                "Тип= " + type +
+                ", Логин= '" + login + '\'';
+    }
+
+    @Override
     public String getPrimaryStringId() {
         return String.valueOf(id);
     }
@@ -79,7 +86,16 @@ public class UserData implements Serializable ,Entity{
         this.password = password;
     }
 
-
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "id=" + id +
+                ", type=" + type +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
     public UserData() {
     }

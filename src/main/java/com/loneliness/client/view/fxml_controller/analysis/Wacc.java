@@ -19,18 +19,17 @@ public class Wacc {
     private Text wacc;
 
     public void setData(String state){
-        // TODO: 02.12.2019 допустим это работает
         mark.setText(state);
         switch (state){
-            case "ХОРОШО":
+            case "МИЛОРД, КОМПАНИЯ ПРОЦВЕТАЕТ":
                 wacc.setText("WACC(1-T)<RONA");
                 pane.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
                 break;
-            case "ПЛОХО":
+            case "ЗАКРЫВАЙ ЛАВОЧКУ":
                 wacc.setText("WACC(1-T)>RONA");
                 pane.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
                 break;
-            case "НОРМ":
+            case "ЗЯМЛЯ ВОЛЬФРАМОМ, КОНЕЧНО":
                 wacc.setText("WACC(1-T)=RONA");
                 pane.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
                 break;
