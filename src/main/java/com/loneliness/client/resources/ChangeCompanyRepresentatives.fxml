@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loneliness.client.view.fxml_controller.change_data.ChangeCompanyRepresentatives">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -16,10 +24,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <MenuButton fx:id="companyIds" mnemonicParsing="false" text="id компании" />
-                  <MenuButton fx:id="usersIds" mnemonicParsing="false" text="id менеджера" GridPane.rowIndex="1" />
-                  <TextField fx:id="companyIdField" GridPane.columnIndex="1" />
-                  <TextField fx:id="userIdField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <MenuButton fx:id="companyIds" mnemonicParsing="false" prefHeight="26.0" prefWidth="562.0" text="Имя компании" />
+                  <MenuButton fx:id="usersIds" mnemonicParsing="false" prefHeight="26.0" prefWidth="511.0" text="Ключ менеджера" GridPane.rowIndex="1" />
+                  <TextField fx:id="companyIdField" opacity="0.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="userIdField" opacity="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

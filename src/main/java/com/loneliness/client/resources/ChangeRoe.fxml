@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="818.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loneliness.client.view.fxml_controller.change_data.ChangeRoe">
    <center>
       <AnchorPane prefHeight="507.0" prefWidth="818.0" BorderPane.alignment="CENTER">
@@ -25,10 +33,10 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="companyIdField" GridPane.columnIndex="1" />
-                  <TextField fx:id="initialDataIDField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="creditIDField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="dividendIDField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="companyIdField" opacity="0.22" GridPane.columnIndex="1" />
+                  <TextField fx:id="initialDataIDField" opacity="0.15" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="creditIDField" opacity="0.15" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="dividendIDField" opacity="0.13" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="EBITField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Text fill="#0012ff" strokeType="OUTSIDE" strokeWidth="0.0" text="EBIT" GridPane.rowIndex="4" />
                   <Text fill="#0012ff" strokeType="OUTSIDE" strokeWidth="0.0" text="ROE" GridPane.rowIndex="5" />
@@ -39,10 +47,10 @@
                   <Text fx:id="profitabilityField" fill="#0012ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Недостаточно данных для подсчёта или они невалидны" wrappingWidth="396.95438385009766" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Text fx:id="RonaField" fill="#0012ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Недостаточно данных для подсчёта или они невалидны" wrappingWidth="393.9794044494629" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Text fx:id="FlField" fill="#0012ff" strokeType="OUTSIDE" strokeWidth="0.0" text="Недостаточно данных для подсчёта или они невалидны" wrappingWidth="392.95438385009766" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <MenuButton fx:id="creditIDs" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="id кредита" GridPane.rowIndex="2" />
-                  <MenuButton fx:id="dividendIds" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" text="id дивиденда" GridPane.rowIndex="3" />
-                  <MenuButton fx:id="companyIds" mnemonicParsing="false" prefHeight="26.0" prefWidth="141.0" text="id компании" />
-                  <MenuButton fx:id="initialDataIDs" mnemonicParsing="false" text="id исходных данных" GridPane.rowIndex="1" />
+                  <MenuButton fx:id="creditIDs" mnemonicParsing="false" prefHeight="26.0" prefWidth="416.0" text="Сумма кредита " GridPane.rowIndex="2" />
+                  <MenuButton fx:id="dividendIds" mnemonicParsing="false" prefHeight="26.0" prefWidth="409.0" text=".сумма дивиденда" GridPane.rowIndex="3" />
+                  <MenuButton fx:id="companyIds" mnemonicParsing="false" prefHeight="26.0" prefWidth="397.0" text="Название компании" />
+                  <MenuButton fx:id="initialDataIDs" mnemonicParsing="false" prefHeight="26.0" prefWidth="386.0" text="Ключ исходных данных" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

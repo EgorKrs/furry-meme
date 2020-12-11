@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public abstract class ChangeData implements SetData {
@@ -120,11 +122,91 @@ public abstract class ChangeData implements SetData {
         }
     }
 
-    protected void setId(Entity value,MenuButton menuButton,TextField field){
+
+
+
+  protected void setId(Entity value,MenuButton menuButton,TextField field){
+
+      MenuItem item;
+      if (value.getClass().getName().equals("con.loneliness.entity.Client")){
+          EventHandler<ActionEvent> fillIDField = new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent e) {
+                  for (Entity entity :
+                          en) {
+                      if (entity.getStringValue().get().equals(((MenuItem) e.getSource()).getText())) {
+                          field.setText(entity.getPrimaryStringId());
+                          menuButton.setText(entity.getStringValue().get());
+                      }
+
+                  }
+              }};
+          item=new MenuItem(value.getStringValue().get());
+         // item=new MenuItem(value.toString());
+         // item=new MenuItem(value.getStringValue().get());
+          item.setOnAction(fillIDField);
+      }
+      else {
+          EventHandler<ActionEvent> fillIDField = new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent e) {
+                  for (Entity entity :
+                          en) {
+                      if (entity.getStringValue().get().equals(((MenuItem) e.getSource()).getText())) {
+                          field.setText(entity.getPrimaryStringId());
+                          menuButton.setText(entity.getStringValue().get());
+                      }
+
+                  }
+              }};
+          item=new MenuItem(value.getStringValue().get());
+          //item=new MenuItem(value.toString());
+        //  item=new MenuItem(value.toString());
+          item.setOnAction(fillIDField);
+      }
+
+      menuButton.getItems().add(item);
+      en.add(value);
+
+
+
+        /*
         MenuItem item;
-        EventHandler<ActionEvent> fillIDField = e -> field.setText(((MenuItem)e.getSource()).getText());
-        item=new MenuItem(String.valueOf(value.getPrimaryStringId()));
+        EventHandler<ActionEvent> fillIDField = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                field.setText(((MenuItem) e.getSource()).getText());
+                for (Entity ent :
+                        en) {
+
+                    if (ent.getStringValue().get().equals(((MenuItem) e.getSource()).getText())) {
+                        field.setText(ent.getPrimaryStringId());
+                        menuButton.setText(ent.getStringValue().get());
+                    }
+
+                    //if(((MenuItem) e.getSource()).getText().equals(String.valueOf(ent.getPrimaryStringId())))
+
+                        //  if(((MenuItem) e.getSource()).getText().equals(ent.getPrimaryStringId()))
+                   //     menuButton.setText(ent.getStringValue().toString());
+                }
+            }
+        };
+
+
+      item=new MenuItem(value.getStringValue().get());
+
+      //   item=new MenuItem(String.valueOf(value.getStringValue()));
+
+     // item=new MenuItem(value.toString());
+
+        //item=new MenuItem(String.valueOf(value.getPrimaryStringId()));
         item.setOnAction(fillIDField);
         menuButton.getItems().add(item);
-    }
+        en.add(value);*/
 }
+ public static ArrayList<Entity> en=new ArrayList<>();
+
+
+}
+
+

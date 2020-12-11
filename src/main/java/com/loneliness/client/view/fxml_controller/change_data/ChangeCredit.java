@@ -98,6 +98,7 @@ public class ChangeCredit  extends ChangeData{
             Credit credit=new Credit();
             if(this.credit!=null)
             credit.setCreditId(this.credit.getCreditId());
+            else action="ADD";
             credit.setCompanyId(Integer.parseInt(companyIdField.getText()));
             credit.setLoanPercentage(new BigDecimal(loanPercentageField.getText()));
             credit.setLoanTotal(new BigDecimal(loanTotalField.getText()));

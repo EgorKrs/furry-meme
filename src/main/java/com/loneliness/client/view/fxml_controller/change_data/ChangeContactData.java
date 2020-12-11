@@ -90,6 +90,7 @@ public class ChangeContactData  extends ChangeData {
             ContactDetail contactDetail = new ContactDetail();
             if(this.contactDetail!=null)
             contactDetail.setContactDetailId(this.contactDetail.getContactDetailId());
+            else action="ADD";
             contactDetail.setCompanyId(Integer.parseInt(companyIdField.getText()));
             contactDetail.setEmail(emailField.getText());
             contactDetail.setPhoneNumber(phoneNumberField.getText());

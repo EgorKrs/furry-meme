@@ -131,6 +131,7 @@ public class ChangeSG extends ChangeData{
             SG sg=new SG();
             if(this.sg!=null)
             sg.setSGId(this.sg.getSGId());
+            else action="ADD";
             sg.setCompanyId(Integer.parseInt(companyIdField.getText()));
             sg.setInitialDataId(Integer.parseInt(initialDataIdField.getText()));
             sg.setCreditId(Integer.parseInt(creditIdField.getText()));

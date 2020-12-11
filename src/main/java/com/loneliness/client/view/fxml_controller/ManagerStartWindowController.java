@@ -151,7 +151,7 @@ public class ManagerStartWindowController {
                 AnchorPane.setRightAnchor(mainPane, 5.0);
                 AnchorPane.setBottomAnchor(mainPane, 5.0);
                 company = new Company();
-                company.setCompanyId(5);
+                company.setCompanyId(75);
                 credit = new Credit();
                 dividend = new Dividend();
                 initialData = new InitialData();

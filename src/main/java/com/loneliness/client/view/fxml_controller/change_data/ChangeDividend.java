@@ -93,6 +93,7 @@ public class ChangeDividend extends ChangeData {
             Dividend dividend=new Dividend();
             if(this.dividend!=null)
             dividend.setDividendId(this.dividend.getDividendId());
+            else action="ADD";
             dividend.setCompanyId(Integer.parseInt(companyIdField.getText()));
             dividend.setReportingPeriodId(Integer.parseInt(reportingPeriodIdField.getText()));
             dividend.setDividendPercentage(new BigDecimal(dividendPercentageField.getText()));

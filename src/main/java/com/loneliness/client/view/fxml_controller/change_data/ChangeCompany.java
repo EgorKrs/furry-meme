@@ -70,6 +70,7 @@ public class ChangeCompany extends ChangeData {
             Company company = new Company();
             if(this.company!=null)
             company.setCompanyId(this.company.getCompanyId());
+            else action="ADD";
             company.setCompanyName(companyNameField.getText());
 
 

@@ -97,7 +97,7 @@ public class ChangeUser extends ChangeData{
             UserData userData = new UserData();
             if(this.userData!=null)
             userData.setId(this.userData.getId());
-
+            else action="ADD";
             userData.setLogin(loginField.getText());
             userData.setPassword(passwordField.getText());
             userData.setEmail(emailField.getText());

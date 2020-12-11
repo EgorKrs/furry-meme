@@ -93,9 +93,13 @@ public class ChangeRoe extends ChangeData{
         creditIDField.setText(String.valueOf(roe.getCreditId()));
         dividendIDField.setText(String.valueOf(roe.getDividendID()));
         EBITField.setText(roe.getEBIT().toString());
+        if(roe.getROE()!=null)
         roeField.setText(roe.getROE().toString());
+        if(roe.getProfR()!=null)
         profitabilityField.setText(roe.getProfR().toString());
+        if(roe.getRONA()!=null)
         RonaField.setText(roe.getRONA().toString());
+        if(roe.getFL()!=null)
         FlField.setText(roe.getFL().toString());
     }
 
@@ -150,6 +154,7 @@ public class ChangeRoe extends ChangeData{
             ROE roe=new ROE();
             if(this.roe!=null)
             roe.setROEId(this.roe.getROEId());
+            else action="ADD";
             roe.setCompanyId(Integer.parseInt(companyIdField.getText()));
             roe.setInitialDataId(Integer.parseInt(initialDataIDField.getText()));
             roe.setCreditId(Integer.parseInt(creditIDField.getText()));

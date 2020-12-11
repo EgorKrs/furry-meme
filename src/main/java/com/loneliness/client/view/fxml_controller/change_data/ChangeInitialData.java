@@ -79,6 +79,7 @@ public class ChangeInitialData extends ChangeData{
             InitialData initialData=new InitialData();
             if(this.initialData!=null)
             initialData.setInitialDataId(this.initialData.getInitialDataId());
+            else action="ADD";
             initialData.setCompanyId(Integer.parseInt(companyIdField.getText()));
             initialData.setReportingDateId(Integer.parseInt(reportingDateIdField.getText()));
             initialData.setSales(new BigDecimal(salesField.getText()));

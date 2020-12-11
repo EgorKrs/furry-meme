@@ -85,7 +85,7 @@ public class ChangeReportingPeriod extends ChangeData{
             ReportingPeriod period=new ReportingPeriod();
             if(this.period!=null)
             period.setReportingPeriodId(this.period.getReportingPeriodId());
-
+            else action="ADD";
             period.setYear(Integer.parseInt(yearField.getText()));
             period.setQuarter(getQuarter());
             period.setCompanyId(Integer.parseInt(companyIdField.getText()));
